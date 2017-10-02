@@ -1,20 +1,54 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
-    Welcome to {{title}}!
+    {{title}}
   </h1>
+  <div>
+    Number of players (5-10):
+    <select [(ngModel)]="playerTotal" (change)="selectPlayerTotal(playerTotal)">
+      <option value="5">5 players</option>
+      <option value="6">6 players</option>
+      <option value="7">7 players</option>
+      <option value="8">8 players</option>
+      <option value="9">9 players</option>
+      <option value="10">10 players</option>
+    </select>
+  </div>
+  <h3>
+    {{playerTotal}}
+  </h3>
+  <!-- <app-hero-detail [hero]="selectedHero"></app-hero-detail> -->
+  <div *ngIf="selectedPlayer">
+    Working!
+      <h2>
+          {{selectedPlayer.name}} details!
+      </h2>
+      <div><label>id: </label>{{selectedPlayer.id}}</div>
+      <div>
+          <label>name: </label>
+          <input [(ngModel)]="selectedPlayer.name" placeholder="name"/>
+          <!-- <button (click)="removePlayer(selectedHero)">X</button> actually, you shouldn't be able to remove -->
+      </div>
+      <div>
+        Probability of being a spy: {{selectedPlayer.spyChance}}
+        <span class="on-mission" *ngIf="selectedPlayer.onMission">
+          On mission!
+        </span>
+      </div>
+      <div>
+        <button (click)="addToMission(selectedPlayer)">Add to Mission!</button>
+        <button (click)=removeFromMission(selectedPlayer)>Remove from Mission</button>
+      </div>
+      <div>
+        <button (click)="dispatchMission()">Dispatch Mission</button>
+        <input [(ngModel)]="failureVotes" placeholder="Total sabotages.." />
+      </div>
+  </div>
   <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
+<ul class="heroes">
+  <li *ngFor="let hero of game.players" (click)="onSelect(hero)" [class.selected]="hero === selectedPlayer">
+      <span class="badge">{{hero.spyChance}}</span> {{hero.name}}
   </li>
 </ul>
-
+<!-- <button (click)="addHero()">Add</button> actually, you shouldn't be able to add -->

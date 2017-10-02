@@ -22,6 +22,8 @@
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
     "core-js": "^2.4.1",
+    "express": "^4.16.0",
+    "jsbayes": "0.0.5",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },
@@ -45,5 +47,8 @@
     "ts-node": "~3.2.0",
     "tslint": "~5.3.2",
     "typescript": "~2.3.3"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.3.",
+  "main": "server.js",
+  "author": "Luke Wilson"
 }

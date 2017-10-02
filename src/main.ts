@@ -9,4 +9,4 @@ if (environment.production) {
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.log(err));
+  .catch(err => console.log(err)); // create a browser platform for just-in-time compilation
